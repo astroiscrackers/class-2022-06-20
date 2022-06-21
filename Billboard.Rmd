@@ -6,9 +6,31 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(billboard)
 ```
 
+```{r}
+x <- wiki_hot_100s |>
+  as_tibble() |> 
+  mutate(year = as.numeric(year))
+```
+
+```{r}
+temp1 <- x |> 
+  group_by(artist) |> 
+  summarise(appearances = n()) |>
+  arrange(desc(appearances))
+```
+
+
+```{r}
+temp2 <- x |> 
+  group_by(artist) |> 
+  summarise(appearances = n()) |> 
+  filter(appearances == 1) |> 
+  arrange(desc(appearances)) |> 
+  nrow(temp2)
+```
 

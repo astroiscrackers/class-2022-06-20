@@ -370,7 +370,34 @@ pre code {
 </div>
 
 
-
+<pre class="r"><code>x &lt;- wiki_hot_100s |&gt;
+  as_tibble() |&gt; 
+  mutate(year = as.numeric(year))</code></pre>
+<pre class="r"><code>x |&gt; 
+  group_by(artist) |&gt; 
+  summarise(appearances = n()) |&gt;
+  arrange(desc(appearances))</code></pre>
+<pre><code>## # A tibble: 2,768 × 2
+##    artist          appearances
+##    &lt;chr&gt;                 &lt;int&gt;
+##  1 Madonna                  35
+##  2 Elton John               26
+##  3 The Beatles              26
+##  4 Janet Jackson            24
+##  5 Mariah Carey             24
+##  6 Michael Jackson          22
+##  7 Stevie Wonder            22
+##  8 Rihanna                  20
+##  9 Taylor Swift             20
+## 10 Whitney Houston          19
+## # … with 2,758 more rows</code></pre>
+<pre class="r"><code>x |&gt; 
+  group_by(artist) |&gt; 
+  summarise(appearances = n()) |&gt; 
+  filter(appearances == 1) |&gt; 
+  arrange(desc(appearances)) |&gt;
+  nrow()</code></pre>
+<pre><code>## [1] 1818</code></pre>
 
 
 
